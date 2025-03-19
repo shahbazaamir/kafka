@@ -11,7 +11,11 @@ org.apache.kafka.common.test.KafkaClusterThreadFactoryTest:
 org.apache.kafka.common.test.TestKitNodeTest:
 - testListenerName
 - testSecurityProtocol
+org.apache.kafka.common.test.junit.ClusterTestBeforeEachTest:
+- testDefault
+- testNoAutoStart
 org.apache.kafka.common.test.junit.ClusterTestExtensionsTest:
+- testBrokerRestart
 - testClusterAliveBrokers
 - testClusterTemplate
 - testClusterTest

@@ -108,6 +108,10 @@ org.apache.kafka.raft.KafkaNetworkChannelTest:
 org.apache.kafka.raft.KafkaRaftClientDriverTest:
 - testShutdown
 - testUncaughtException
+org.apache.kafka.raft.KafkaRaftClientFetchTest:
+- testInvalidMemoryRecords
+- testRandomRecords
+- testReplicationOfHigherPartitionLeaderEpoch
 org.apache.kafka.raft.KafkaRaftClientPreVoteTest:
 - testFollowerGrantsPreVoteIfHasNotFetchedYet
 - testHandleInvalidPreVoteRequestWithOlderEpoch
@@ -156,6 +160,7 @@ org.apache.kafka.raft.KafkaRaftClientReconfigTest:
 - testFollowerSendsUpdateVoterWhenDifferent
 - testHandleBeginQuorumRequestMoreEndpoints
 - testLeaderDoesNotBootstrapRecordsWithKraftVersion0
+- testLeaderMetricsAreReset
 - testLeaderUpdatesVoter
 - testLeaderWritesBootstrapRecords
 - testObserverDiscoversLeaderWithUnknownVoters
@@ -389,8 +394,11 @@ org.apache.kafka.raft.MockLogTest:
 - testEmptyAppendNotAllowed
 - testEndOffsetForEpoch
 - testFailToIncreaseLogStartPastHighWatermark
+- testInvalidLeaderEpoch
+- testInvalidMemoryRecords
 - testMetadataValidation
 - testMonotonicEpochStartOffset
+- testRandomRecords
 - testReadMissingSnapshot
 - testReadOutOfRangeOffset
 - testReadRecords
@@ -435,6 +443,8 @@ org.apache.kafka.raft.ProspectiveStateTest:
 - testThreeNodeQuorumVoteRejected
 - testTwoNodeQuorumVoteGranted
 - testTwoNodeQuorumVoteRejected
+org.apache.kafka.raft.QuorumConfigTest:
+- testIllegalConfig
 org.apache.kafka.raft.QuorumStateTest:
 - testCanBecomeFollowerOfNonVoter
 - testCandidateToAnyStateLowerEpoch
@@ -534,6 +544,16 @@ org.apache.kafka.raft.QuorumStateTest:
 - testUnattachedVotedToUnattachedVoted
 - testUnattachedWithLeaderNoEndpointToAndFromProspective
 - testUnattachedWithLeaderToProspective
+org.apache.kafka.raft.RaftEventSimulationTest:
+- canElectInitialLeader
+- canElectNewLeaderAfterOldLeaderFailure
+- canElectNewLeaderAfterOldLeaderPartitionedAway
+- canMakeProgressAfterBackToBackLeaderFailures
+- canMakeProgressIfMajorityIsReachable
+- canRecoverAfterAllNodesKilled
+- canRecoverFromSingleNodeCommittedDataLoss
+- leadershipAssignedOnlyOnceWithNetworkPartitionIfThereExistsMajority
+- leadershipWillNotChangeDuringNetworkPartitionIfMajorityStillReachable
 org.apache.kafka.raft.RaftUtilTest:
 - testErrorResponse
 - testFetchRequestV17Compatibility
@@ -642,6 +662,8 @@ org.apache.kafka.raft.internals.KafkaRaftMetricsTest:
 - shouldRecordPollIdleRatio
 - shouldRecordRate
 - shouldRecordVoterQuorumState
+- testLeaderMetrics
+- testNumberOfVoters
 org.apache.kafka.raft.internals.MemoryBatchReaderTest:
 - testIteration
 org.apache.kafka.raft.internals.RecordsBatchReaderTest:
@@ -652,7 +674,10 @@ org.apache.kafka.raft.internals.RecordsIteratorTest:
 - testControlRecordIterationWithKraftVersion0
 - testControlRecordIterationWithKraftVersion1
 - testControlRecordTypeValues
+- testCrcValidation
 - testEmptyRecords
+- testFileRecords
+- testMemoryRecords
 - testWithAllSupportedControlRecords
 org.apache.kafka.raft.internals.ThresholdPurgatoryTest:
 - testCompleteAll

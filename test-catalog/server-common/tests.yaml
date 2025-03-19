@@ -35,6 +35,7 @@ org.apache.kafka.server.common.FeatureTest:
 - testLatestProductionIsOneOfFeatureValues
 - testUnstableTestVersion
 - testV0SupportedInEarliestMV
+- testValidateEligibleLeaderReplicasVersion
 - testValidateVersionAllFeatures
 - testValidateWithDefaultValueDependencyAheadOfItsDefaultLevel
 - testValidateWithDependencyNotProductionReady
@@ -44,6 +45,7 @@ org.apache.kafka.server.common.FeatureTest:
 - testValidateWithNonExistentLatestProduction
 org.apache.kafka.server.common.FinalizedFeaturesTest:
 - testKRaftModeFeatures
+- testSetFinalizedLevel
 org.apache.kafka.server.common.KRaftVersionTest:
 - tesVotersRecordVersion
 - testBootstrapMetadataVersion
@@ -56,13 +58,10 @@ org.apache.kafka.server.common.MetadataVersionTest:
 - assertLatestProductionIsLessThanLatest
 - assertLatestProductionIsProduction
 - testDirectoryAssignmentSupported
+- testFeatureLevels
 - testFromVersionString
 - testIsDelegationTokenSupported
 - testIsElrSupported
-- testIsInControlledShutdownStateSupported
-- testKRaftFeatureLevelsAtAndAfter3_0_IV1
-- testKRaftFeatureLevelsBefore3_0_IV1
-- testKRaftVersions
 - testListOffsetsValueVersion
 - testMetadataChanged
 - testPartitionChangeRecordVersion
@@ -238,6 +237,14 @@ org.apache.kafka.server.record.BrokerCompressionTypeTest:
 - testTargetCompressionType
 org.apache.kafka.server.share.persister.DefaultStatePersisterTest:
 - testDefaultPersisterClose
+- testDeleteStateResponseToResultFailedFuture
+- testDeleteStateResponseToResultPartialResults
+- testDeleteStateSuccess
+- testDeleteStateValidate
+- testInitializeStateResponseToResultFailedFuture
+- testInitializeStateResponseToResultPartialResults
+- testInitializeStateSuccess
+- testInitializeStateValidate
 - testReadStateResponseToResultFailedFuture
 - testReadStateResponseToResultPartialResults
 - testReadStateSuccess
@@ -251,9 +258,26 @@ org.apache.kafka.server.share.persister.DefaultStatePersisterTest:
 - testWriteStateSuccess
 - testWriteStateValidate
 org.apache.kafka.server.share.persister.PersisterStateManagerTest:
+- testDeleteStateRequestBatchingWithCoordinatorNodeLookup
+- testDeleteStateRequestCoordinatorFoundOnRetry
+- testDeleteStateRequestCoordinatorFoundSuccessfully
+- testDeleteStateRequestFailedMaxRetriesExhausted
+- testDeleteStateRequestRetryWithNotCoordinatorSuccessfulOnRetry
+- testDeleteStateRequestWithCoordinatorNodeLookup
+- testDeleteStateRequestWithRetryAndCoordinatorNodeLookup
 - testFindCoordinatorAttemptsExhausted
+- testFindCoordinatorDisconnect
 - testFindCoordinatorFatalError
+- testFindCoordinatorNullResponse
 - testFindCoordinatorSuccess
+- testInitializeStateRequestBatchingWithCoordinatorNodeLookup
+- testInitializeStateRequestCoordinatorFoundOnRetry
+- testInitializeStateRequestCoordinatorFoundSuccessfully
+- testInitializeStateRequestFailedMaxRetriesExhausted
+- testInitializeStateRequestRetryWithNotCoordinatorSuccessfulOnRetry
+- testInitializeStateRequestWithCoordinatorNodeLookup
+- testInitializeStateRequestWithRetryAndCoordinatorNodeLookup
+- testNetworkErrorHandling
 - testPersisterStateManagerClose
 - testReadStateRequestCoordinatorFoundOnRetry
 - testReadStateRequestCoordinatorFoundSuccessfully
